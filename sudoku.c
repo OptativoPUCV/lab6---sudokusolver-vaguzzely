@@ -56,6 +56,11 @@ List* get_adj_nodes(Node* n)
   int j;
   int idx[2] = {0, 0};
 
+  if (list == NULL)
+  {
+    return NULL;
+  }
+
   for (i = 0; i < 9; i++) 
   {
     for (j = 0; j < 9; j++)
