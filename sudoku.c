@@ -12,7 +12,7 @@ Node* createNode(){
   return n;
 }
 
-Node* copy(Node* n){
+Node* copy(Node* n){//importante
     Node* new=(Node*) malloc(sizeof(Node));
     *new = *n;
     return new;
@@ -74,7 +74,7 @@ List* get_adj_nodes(Node* n)
   }
   for (int k = 1; k <= 9; k++) 
   {
-    
+    Node* adj_node = copy(n);
     
   
   
