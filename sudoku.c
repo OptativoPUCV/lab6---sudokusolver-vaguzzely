@@ -55,7 +55,9 @@ List* get_adj_nodes(Node* n)
   int i;
   int j;
   int idx[2] = {0, 0};
+  int encuentra = 0;
 
+  
   if (list == NULL)
   {
     return 0;
@@ -69,6 +71,7 @@ List* get_adj_nodes(Node* n)
       {
         idx[0] = i;
         idx[1] = j;
+        found = 1;
         break;
       }
     }
