@@ -56,6 +56,24 @@ List* get_adj_nodes(Node* n)
   int j;
   int idx[2] = {0, 0};
 
+  for (i = 0; i < 9; i++) 
+  {
+    for (j = 0; j < 9; j++)
+    {
+      if (n->sudo[i][j] == 0) 
+      {
+        idx[0] = i;
+        idx[1] = j;
+        break;
+      }
+    }
+    if (n->sudo[idx[0]][idx[1]] == 0)
+    {
+      break;
+    }
+  }
+
+  
   
     
     return list;
