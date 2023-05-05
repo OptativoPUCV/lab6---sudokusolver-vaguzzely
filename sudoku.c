@@ -75,11 +75,8 @@ List* get_adj_nodes(Node* n)
   for (int k = 1; k <= 9; k++) 
   {
     Node* adj_node = copy(n);
-    
-  
-  
-    
-    return list;
+    adj_node->sudo[idx[0]][idx[1]] = k; //asigna el valor k a la casilla indicada por idx en la matriz sudo del nodo adj_node
+
 }
 
 
