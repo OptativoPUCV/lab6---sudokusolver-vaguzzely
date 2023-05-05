@@ -51,7 +51,7 @@ int is_valid(Node* n){
 
 List* get_adj_nodes(Node* n)
 {
-  List* list=createList();
+  List* list = createList();
   int i;
   int j;
   int idx[2] = {0, 0};
@@ -72,7 +72,10 @@ List* get_adj_nodes(Node* n)
       break;
     }
   }
-
+  for (int k = 1; k <= 9; k++) 
+  {
+    
+    
   
   
     
@@ -80,7 +83,8 @@ List* get_adj_nodes(Node* n)
 }
 
 
-int is_final(Node* n){
+int is_final(Node* n)
+{
     return 0;
 }
 
