@@ -71,7 +71,7 @@ List* get_adj_nodes(Node* n)
       {
         idx[0] = i;
         idx[1] = j;
-        found = 1;
+        encuentra = 1;
         break;
       }
     }

@@ -143,3 +143,14 @@ sudoku.c:58:7: error: unused variable ‘encuentra’ [-Werror=unused-variable]
 cc1: all warnings being treated as errors
 Compilation failed
 ef834dc
+Fri 05 May 2023 04:39:09 AM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+sudoku.c: In function ‘get_adj_nodes’:
+sudoku.c:58:7: error: variable ‘encuentra’ set but not used [-Werror=unused-but-set-variable]
+   58 |   int encuentra = 0;
+      |       ^~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+00ec3fd
