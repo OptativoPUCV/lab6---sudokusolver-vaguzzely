@@ -43,7 +43,9 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
+int is_valid(Node* n)
+{
+  
 
     return 1;
 }
@@ -54,7 +56,7 @@ List* get_adj_nodes(Node* n)
   List* list = createList();
   int i;
   int j;
-  int idx[2] = {0, 0};
+  int indice[2] = {0, 0}; //coordenadas fila,columna
   int encuentra = 0;
 
   
@@ -69,8 +71,8 @@ List* get_adj_nodes(Node* n)
     {
       if (n->sudo[i][j] == 0) 
       {
-        idx[0] = i;
-        idx[1] = j;
+        indice[0] = i;
+        indice[1] = j;
         encuentra = 1;
         break;
       }
@@ -84,7 +86,7 @@ List* get_adj_nodes(Node* n)
   for (int k = 1; k <= 9; k++) 
   {
     Node* adj_node = copy(n);
-    adj_node->sudo[idx[0]][idx[1]] = k; //asigna el valor k a la casilla indicada por idx en la matriz sudo del nodo adj_node
+    adj_node->sudo[indice[0]][indice[1]] = k; //asigna el valor k a la casilla indicada por indice en la matriz sudo del nodo adj_node
     if (is_valid(adj_node)) 
     {
       pushBack(list, adj_node);
