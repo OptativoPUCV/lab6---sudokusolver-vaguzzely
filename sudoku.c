@@ -58,7 +58,7 @@ List* get_adj_nodes(Node* n)
 
   if (list == NULL)
   {
-    return;
+    return 0;
   }
 
   for (i = 0; i < 9; i++) 

@@ -122,3 +122,9 @@ sudoku.c:52:7: note: declared here
 cc1: all warnings being treated as errors
 Compilation failed
 dcb7ff3
+Fri 05 May 2023 04:33:31 AM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  1|5
+total_score: 5/70
+7b10b85
