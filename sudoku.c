@@ -75,7 +75,8 @@ List* get_adj_nodes(Node* n)
         break;
       }
     }
-    if (n->sudo[idx[0]][idx[1]] == 0)
+    
+     if (encuentra)
     {
       break;
     }
