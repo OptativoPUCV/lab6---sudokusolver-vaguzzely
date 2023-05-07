@@ -553,3 +553,31 @@ sudoku.c:109:1: error: control reaches end of non-void function [-Werror=return-
 cc1: all warnings being treated as errors
 Compilation failed
 4b16391
+Sun 07 May 2023 03:33:52 AM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+sudoku.c:92:1: error: expected identifier or ‘(’ before ‘}’ token
+   92 | }
+      | ^
+sudoku.c: In function ‘DFS’:
+sudoku.c:137:10: error: ‘node’ undeclared (first use in this function); did you mean ‘Node’?
+  137 |   return node;
+      |          ^~~~
+      |          Node
+sudoku.c:137:10: note: each undeclared identifier is reported only once for each function it appears in
+sudoku.c: In function ‘is_valid’:
+sudoku.c:49:1: error: control reaches end of non-void function [-Werror=return-type]
+   49 | }
+      | ^
+sudoku.c: In function ‘is_final’:
+sudoku.c:109:1: error: control reaches end of non-void function [-Werror=return-type]
+  109 | }
+      | ^
+sudoku.c: In function ‘DFS’:
+sudoku.c:138:1: error: control reaches end of non-void function [-Werror=return-type]
+  138 | }
+      | ^
+cc1: all warnings being treated as errors
+Compilation failed
+e8fd1a4
