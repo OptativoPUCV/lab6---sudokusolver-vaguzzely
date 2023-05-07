@@ -44,59 +44,7 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n)
-{int i,j,k,p;
-  int aux;
-  int *arreglo = (int*) calloc(10,sizeof(int));
-  for(j = 0 ; j < 9 ; j++){
-    for(i = 0; i < 9; i++){
-      if(n->sudo[i][j] != 0){
-        aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if (arreglo[aux] > 1)return 0;
-      }
-    }
-    for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
-    }
-  }
-  
-  for(k = 0; k < 10;k++){
-    arreglo[k] = 0;
-  }
-  
-  for(i = 0 ; i < 9 ; i++){
-    for(j = 0; j < 9; j++){
-      if(n->sudo[i][j] != 0){
-        aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if (arreglo[aux] > 1)return 0;
-      }
-    }
-    for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
-    }
-  }
-
-  for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
-    }
-  
-  for(k = 0; k < 9 ; k++){ 
-    for(p=0;p<9;p++){
-      i=3*(k/3) + (p/3) ;
-      j=3*(k%3) + (p%3) ;
-      if(n->sudo[i][j] != 0){
-        aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if(arreglo[aux] > 1)return 0; 
-      }
-    }
-    for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
-    }
-  }
-  //print_node(n);
-  return 1;
+{
 }
 
 
@@ -105,44 +53,21 @@ List* get_adj_nodes(Node* n)
   List* list = createList();
   int i;
   int j;
-  int indice[2] = {0, 0}; //coordenadas fila,columna
-  int encuentra = 0;
-
+  int k;
   
-  if (list == NULL)
-  {
-    return 0;
-  }
-
-  for (i = 0; i < 9; i++) 
-  {
-    for (j = 0; j < 9; j++)
-    {
-      if (n->sudo[i][j] == 0) 
-      {
-        indice[0] = i;
-        indice[1] = j;
-        encuentra = 1;
-        break;
+  for(i=0;i<9;i++){
+    for(j=0;j<9;j++){
+      if(n->sudo[i][j]==0){
+        for(k=1;k<10;k++){
+          n->sudo[i][j]=k;
+          if(is_valid(n)){
+            Node* adj=copy(n);
+            pushBack(list,adj);
+          }
+        }
+        n->sudo[i][j]=0;
+        return list;
       }
-    }
-    
-     if (encuentra)
-    {
-      break;
-    }
-  }
-  for (int k = 1; k <= 9; k++) 
-  {
-    Node* adj_node = copy(n);
-    adj_node->sudo[indice[0]][indice[1]] = k; //asigna el valor k a la casilla indicada por indice en la matriz sudo del nodo adj_node
-    if (is_valid(adj_node)) 
-    {
-      pushBack(list, adj_node);
-    }
-    else 
-    {
-      free(adj_node);
     }
   }
   return list;
