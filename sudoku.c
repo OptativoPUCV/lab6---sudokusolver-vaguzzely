@@ -43,58 +43,67 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
-  int i,j,k,l,p;
-  int aux;
-  int *arreglo = (int*) calloc(10,sizeof(int));
-  
-  // Validación de filas
-  for(j = 0 ; j < 9 ; j++){
-    for(i = 0; i < 9; i++){
-      if(n->sudo[i][j] != 0){
-        aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if (arreglo[aux] > 1) return 0;
-      }
-    }
-    for(k = 0; k < 10; k++){
-      arreglo[k] = 0;
-    }
-  }
-  
-  // Validación de columnas
-  for(i = 0 ; i < 9 ; i++){
-    for(j = 0; j < 9; j++){
-      if(n->sudo[i][j] != 0){
-        aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if (arreglo[aux] > 1) return 0;
-      }
-    }
-    for(k = 0; k < 10; k++){
-      arreglo[k] = 0;
-    }
-  }
+int repetidosFila(int fila, Node *n)
+{
+  int numFila[10] = {0}, columna;
 
-  // Validación de submatrices
-  for(k = 0; k < 3; k++){ 
-    for(l = 0; l < 3; l++){
-      for(p = 0; p < 9; p++){
-        i = 3*k + (p/3);
-        j = 3*l + (p%3);
-        if(n->sudo[i][j] != 0){
-          aux = n->sudo[i][j];
-          arreglo[aux]++;
-          if (arreglo[aux] > 1) return 0; 
-        }
-      }
-      for(k = 0; k < 10; k++){
-        arreglo[k] = 0;
-      }
+  for(columna = 0 ; columna < 9 ; columna++)
+  {
+    if(n -> sudo[fila][columna] != 0)
+    {
+      if (numFila[n -> sudo[fila][columna]] == 1) return 0;
+      else numFila[n -> sudo[fila][columna]] = 1;
     }
   }
   
-  return;
+  return 1;
+}
+
+int repetidosColumna(int columna, Node *n)
+{
+  int numColumna[10] = {0}, fila;
+
+  for(fila = 0 ; fila < 9 ; fila++)
+  {
+    if(n -> sudo[fila][columna] != 0)
+    {
+      if (numColumna[n -> sudo[fila][columna]] == 1) return 0;
+      else numColumna[n -> sudo[fila][columna]] = 1;
+    }
+  }
+  
+  return 1;
+}
+
+int repetidosSubMatriz(int subMatriz, Node *n)
+{
+  int aux[10] = {0}, p;
+  
+  for(p = 0 ; p < 9 ; p++)
+  {
+    int i = 3 * (subMatriz/3) + (p/3);
+    int j = 3 * (subMatriz%3) + (p%3);
+    
+    if(n -> sudo[i][j] != 0)
+    {
+      if (aux[n -> sudo[i][j]] == 1) return 0;
+      else aux[n -> sudo[i][j]] = 1;
+    }
+  }
+  
+  return 1;
+}
+
+int is_valid(Node* n)
+{
+  int i;
+  for (i = 0 ; i < 9 ; i++)
+  {
+    if(repetidosFila(i, n) == 0 || repetidosColumna(i, n) == 0 || repetidosSubMatriz(i, n) == 0) return 0;
+  }
+  
+  return 1;
+  
 }
 
 
