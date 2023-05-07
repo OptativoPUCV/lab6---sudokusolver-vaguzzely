@@ -94,7 +94,7 @@ int is_valid(Node* n){
     }
   }
   
-  return n;
+  return 0;
 }
 
 
