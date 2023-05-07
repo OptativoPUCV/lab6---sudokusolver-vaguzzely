@@ -43,53 +43,61 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node * n) {
-    int i, j;
-    // Verificar las filas
-    for (i = 0; i < 9; i++) {
-        int used_nums[10] = {0}; // Inicializar arreglo para marcar números
-        for (j = 0; j < 9; j++) {
-            int num = n->sudo[i][j];
-            if (used_nums[num] == 1) {
-                return 0; // Número repetido en la fila
-            } else {
-                used_nums[num] = 1;
-            }
-        }
+int is_valid(Node* n){
+  int i,j,k,p;
+  int aux;
+  int *arreglo = (int*) calloc(10,sizeof(int));
+  for(j = 0 ; j < 9 ; j++){
+    for(i = 0; i < 9; i++){
+      if(n->sudo[i][j] != 0){
+        aux = n->sudo[i][j];
+        arreglo[aux]++;
+        if (arreglo[aux] > 1)return 0;
+      }
     }
-    // Verificar las columnas
-    for (j = 0; j < 9; j++) {
-        int used_nums[10] = {0}; // Inicializar arreglo para marcar números
-        for (i = 0; i < 9; i++) {
-            int num = n->sudo[i][j];
-            if (used_nums[num] == 1) {
-                return 0; // Número repetido en la columna
-            } else {
-                used_nums[num] = 1;
-            }
-        }
+    for(k = 0; k < 10;k++){
+      arreglo[k] = 0;
     }
-    // Verificar las submatrices de 3x3
-    int sub_i, sub_j;
-    for (sub_i = 0; sub_i < 3; sub_i++) {
-        for (sub_j = 0; sub_j < 3; sub_j++) {
-            int used_nums[10] = {0}; // Inicializar arreglo para marcar números
-            for (i = sub_i * 3; i < sub_i * 3 + 3; i++) {
-                for (j = sub_j * 3; j < sub_j * 3 + 3; j++) {
-                    int num = n->sudo[i][j];
-                    if (used_nums[num] == 1) {
-                        return 0; // Número repetido en la submatriz
-                    } else {
-                        used_nums[num] = 1;
-                    }
-                }
-            }
-        }
+  }
+  
+  for(k = 0; k < 10;k++){
+    arreglo[k] = 0;
+  }
+  
+  for(i = 0 ; i < 9 ; i++){
+    for(j = 0; j < 9; j++){
+      if(n->sudo[i][j] != 0){
+        aux = n->sudo[i][j];
+        arreglo[aux]++;
+        if (arreglo[aux] > 1)return 0;
+      }
     }
-    // El estado es válido
-    return 1;
-}
+    for(k = 0; k < 10;k++){
+      arreglo[k] = 0;
+    }
+  }
 
+  for(k = 0; k < 10;k++){
+      arreglo[k] = 0;
+    }
+  
+  for(k = 0; k < 9 ; k++){ 
+    for(p=0;p<9;p++){
+      i=3*(k/3) + (p/3) ;
+      j=3*(k%3) + (p%3) ;
+      if(n->sudo[i][j] != 0){
+        aux = n->sudo[i][j];
+        arreglo[aux]++;
+        if(arreglo[aux] > 1)return 0; 
+      }
+    }
+    for(k = 0; k < 10;k++){
+      arreglo[k] = 0;
+    }
+  }
+  //print_node(n);
+  return 1;
+}
 
 
 List* get_adj_nodes(Node* n)
@@ -141,6 +149,7 @@ int is_final(Node* n)
 
 Node* DFS(Node* initial, int* cont)
 {
+  
   
 }
 
