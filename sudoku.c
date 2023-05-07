@@ -124,8 +124,8 @@ List* get_adj_nodes(Node* n)
             Node *adjNode = copy(n);
             pushBack(list, adjNode);}
           }
-          
-        }
+      }
+      return list;
     }
   }
   return list;
