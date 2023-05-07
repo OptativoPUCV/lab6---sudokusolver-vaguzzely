@@ -43,7 +43,10 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node * n) {}
+int is_valid(Node * n) 
+{
+  
+}
 
 
 
@@ -107,6 +110,25 @@ int is_final(Node* n)
 
 Node* DFS(Node* initial, int* cont)
 {
+  Stack* s = createStack();
+  push(s,initial);
+  while(!is_empty(s)){
+    (*cont)++;
+    Node *n = top(s);
+    pop(s);
+    if(is_final(n)){
+      print_node(n);
+      return n;
+    }
+    List* adj=get_adj_nodes(n);
+    Node* aux= first(adj);
+    while(aux){
+      push(s,aux);
+      aux=next(adj);
+    }
+    free(n);
+  }
+  return NULL;
   
   
 }
