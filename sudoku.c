@@ -43,65 +43,40 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node * n) {
-    int rows[9][10] = {0}; // arreglo de enteros para marcar los números en cada fila
-    int cols[9][10] = {0}; // arreglo de enteros para marcar los números en cada columna
-    int boxes[9][10] = {0}; // arreglo de enteros para marcar los números en cada submatriz 3x3
-    
-    // recorrer las celdas del estado/nodo
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            int num = n->board[i][j];
-            if (num != 0) { // si la celda no está vacía
-                // verificar si el número ya apareció en la fila
-                if (rows[i][num] == 1) {
-                    return 0; // no es válido
-                } else {
-                    rows[i][num] = 1; // marcar el número en la fila
-                }
-                
-                // verificar si el número ya apareció en la columna
-                if (cols[j][num] == 1) {
-                    return 0; // no es válido
-                } else {
-                    cols[j][num] = 1; // marcar el número en la columna
-                }
-                
-                // verificar si el número ya apareció en la submatriz 3x3
-                int box_idx = (i / 3) * 3 + (j / 3); // índice de la submatriz
-                if (boxes[box_idx][num] == 1) {
-                    return 0; // no es válido
-                } else {
-                    boxes[box_idx][num] = 1; // marcar el número en la submatriz
-                }
-            }
-        }
-    }
-    
-    return 1; // es válido
-}
+int is_valid(Node * n) {}
+
 
 
 
 
 List* get_adj_nodes(Node* n)
 {
-  List* list = createList();
-  int i, j;
-    // Buscar la primera casilla vacía
-  for (i = 0; i < 9; i++) {
-    for (j = 0; j < 9; j++) {
-      if (n->sudo[i][j] == 0) {
-        int k;
-        for (k = 1; k <= 9; k++) {
-          Node* adj_node = copy(n);
-          adj_node->sudo[i][j] = k;
-          pushBack(list, adj_node);
+  
+  List *list = createList();
+
+  for(int i = 0 ; i < 9 ; i++)
+  {
+    for(int j = 0 ; j < 9 ; j++)
+    {
+      if (n -> sudo[i][j] == 0)
+      {
+        for(int nuevo = 1 ; nuevo < 10 ; nuevo++)
+        {
+          n -> sudo[i][j] = nuevo;
+          
+          if (is_valid(n)) 
+          {
+            Node *adjNode = copy(n);
+            pushBack(list, adjNode);
+          }
+          
         }
+        n -> sudo[i][j] = 0;
         return list;
       }
     }
   }
+  
   return list;
 }
 
