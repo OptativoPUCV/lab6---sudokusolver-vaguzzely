@@ -128,7 +128,7 @@ Node* DFS(Node* initial, int* cont)
     }
     free(n);
   }
-  return initial;
+  return n;
 }
 
 
