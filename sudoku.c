@@ -92,7 +92,6 @@ List* get_adj_nodes(Node* n)
   for (i = 0; i < 9; i++) {
     for (j = 0; j < 9; j++) {
       if (n->sudo[i][j] == 0) {
-                // Generar nodos adyacentes con valores posibles
         int k;
         for (k = 1; k <= 9; k++) {
           Node* adj_node = copy(n);
