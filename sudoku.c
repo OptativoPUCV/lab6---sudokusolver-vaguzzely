@@ -45,41 +45,45 @@ void print_node(Node* n){
 
 int is_valid(Node * n) 
 {
-  int i,j,k,p;
+  int i;
+  int j;
+  int k;
+  int p;
   int aux;
-  int *arreglo = (int*) calloc(10,sizeof(int));
+  int *array = (int*) calloc(10,sizeof(int));
   for(j = 0 ; j < 9 ; j++){
     for(i = 0; i < 9; i++){
-      if(n->sudo[i][j] != 0){
+      if(n->sudo[i][j] != 0)
+      {
         aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if (arreglo[aux] > 1)return 0;
+        array[aux]++;
+        if (array[aux] > 1)return 0;
       }
     }
     for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
+      array[k] = 0;
     }
   }
   
   for(k = 0; k < 10;k++){
-    arreglo[k] = 0;
+    array[k] = 0;
   }
   
   for(i = 0 ; i < 9 ; i++){
     for(j = 0; j < 9; j++){
       if(n->sudo[i][j] != 0){
         aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if (arreglo[aux] > 1)return 0;
+        array[aux]++;
+        if (array[aux] > 1)return 0;
       }
     }
     for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
+      array[k] = 0;
     }
   }
 
   for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
+      array[k] = 0;
     }
   
   for(k = 0; k < 9 ; k++){ 
@@ -88,22 +92,18 @@ int is_valid(Node * n)
       j=3*(k%3) + (p%3) ;
       if(n->sudo[i][j] != 0){
         aux = n->sudo[i][j];
-        arreglo[aux]++;
-        if(arreglo[aux] > 1)return 0; 
+        array[aux]++;
+        if(array[aux] > 1)return 0; 
       }
     }
-    for(k = 0; k < 10;k++){
-      arreglo[k] = 0;
+    for(k = 0; k < 10;k++)
+    {
+      array[k] = 0;
     }
   }
-  //print_node(n);
   return 1;
 
 }
-
-
-
-
 
 List* get_adj_nodes(Node* n)
 {
@@ -125,6 +125,7 @@ List* get_adj_nodes(Node* n)
             pushBack(list, adjNode);}
           }
       }
+      return list;
     }
   }
   return list;
