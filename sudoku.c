@@ -52,26 +52,31 @@ int is_valid(Node* n)
 List* get_adj_nodes(Node* n)
 {
   List* list = createList();
-  int i;
-  int j;
-  int k;
-  
-  for(i=0;i<9;i++){
-    for(j=0;j<9;j++){
-      if(n->sudo[i][j]==0){
-        for(k=1;k<10;k++){
-          n->sudo[i][j]=k;
-          if(is_valid(n)){
-            Node* adj=copy(n);
-            pushBack(list,adj);
-          }
+  int i, j;
+    // Buscar la primera casilla vacía
+  for (i = 0; i < 9; i++) {
+    for (j = 0; j < 9; j++) {
+      if (n->sudo[i][j] == 0) {
+                // Generar nodos adyacentes con valores posibles
+        int k;
+        for (k = 1; k <= 9; k++) {
+          Node* adj_node = copy(n);
+          adj_node->sudo[i][j] = k;
+          pushBack(list, adj_node);
         }
-        n->sudo[i][j]=0;
         return list;
       }
     }
   }
   return list;
+}
+
+
+
+
+
+
+
 }
 
 
@@ -93,25 +98,7 @@ int is_final(Node* n)
 
 Node* DFS(Node* initial, int* cont)
 {
-  Stack* s = createStack();
-  push(s,initial);
-  while(!is_empty(s)){
-    (*cont)++;
-    Node *n = top(s);
-    pop(s);
-    if(is_final(n)){
-      print_node(n);
-      return n;
-    }
-    List* adj=get_adj_nodes(n);
-    Node* aux= first(adj);
-    while(aux){
-      push(s,aux);
-      aux=next(adj);
-    }
-    free(n);
-  }
-  return NULL;
+  
 }
 
 
